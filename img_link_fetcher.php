@@ -30,8 +30,8 @@ class img_link_fetcher {
 
   /**
    * get_img_links function.
-   * Main method that gets called by the user of this class.
-   *
+   * Main method that gets called by the user of this class. Takes in a URL and
+   * returns a list of sanitized img links.
    *
    * @param  String $url
    * @return array  $sanitized_img_links
@@ -64,7 +64,11 @@ class img_link_fetcher {
    */
   public static function get_error_msgs() {return self::$error_msg;}
   public static function get_warning_msgs() {return self::$warning_msg;}
-  public static function get_allowed_img_types() {return array_map(function($x) {return substr($x, 1);});}
+  public static function get_allowed_img_types() {
+    return array_map(function($x) {
+      return substr($x, 1);
+    }, array_keys(self::$allowed_img_types));
+  }
 
   /**
    * _fetch_url_content function.
